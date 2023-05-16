@@ -28,7 +28,7 @@ $python3 handler.py.
 
 ## Testing
 
-You can download the trained models used for the paper at: https://drive.google.com/open?id=1TXEbHMTA_AWPFC8bbt7WiBtfT3jVy8cG . To run, put the test file into the data forlder. test file should be one tweet per line with no additional columns. set the name of the file in test_configuration.cfg and run handler-test.py. 
+You can download the trained models used for our project at : https://drive.google.com/drive/u/0/folders/12JT7zFMR4t4YcpYEA04ra4FJl0WudUcc . To run, put the test file into the data forlder. test file should be one tweet per line with no additional columns. set the name of the file in test_configuration.cfg and run handler-test.py. 
 
 ## Citation
 Please use the following citation when using the code or the paper:
