@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Project Title Here</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="../home.html">Practical Machine Deep Learning</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="../home.html">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5">Emotion Recognition</h1>
+        <ul class="list-unstyled">
+          <li>Ahmad Mohamed</li>
+          <li>Mariam ElAwadly</li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Problem Statement</h2>
+		<p>
+      Recognizing human emotions is a key factor in effective human communication. Such emotions can be realized through different aspects such as facial expressions, tone of voice, and choice of words. With the rapid development of technology, and the emergence of smartphones, our main channel of communication became through text, such as texting or even posting online. This caused a problem, for it removed two of the important features of effective communication, the tone of voice and facial expressions. Consequently, the identification of emotions became harder and misinterpretation of texts and feelings became higher. This is why we decided to implement emotion recognition from text model. This will enhance the probability of interpreting emotions correctly and aid in effective communication through text only. 
+		</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Dataset</h2>
+
+        <p>
+          We used around 124k tweets from the tweet dataset of Wang et al. The original model had 1.3 Million tweets. However, the tweets were not provided. Their IDs were given in a text file and we retrieved them ourselves. Since this is from 2019, some tweets were deleted or removed. In addition, we were denied access to Twitter API to retrieve the data. As a result, we were able to web scrape around 124k tweets only. The dataset is divided into 3 columns (id, text, emotion). The emotion column has 7 classes (anger, fear, joy, love, sadness, surprise, and thankfulness). The dataset is imbalanced with the majority of the tweets being joy and sadness. The dataset is split into 80% training and 20% testing. We used the SemEval 2018 - task E-c Dataset for our emojis with text dataset. We modified the dataset to match our model, then we used it to train the model. It provided around 10k tweets with different emotions. However, it didn't contain any thankfulness emotions. In both datasets mentioned above, there weren't equal distributions among the data, for we had fewer tweets on surprise and thankfulness emotions.
+		</p>
+
+		<br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/dataset_image.jpg" width = "1000" height = "500" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Input/Output Examples</h2>
+
+        <p>
+			Our model takes in the tweet, and displays the percentage of each emotion the tweets conveys as you can see from the image below. This is beneficial as text may hold more than one emotion, such as love and joy or even fear and sadness. Emotions are neither mutually exclusive nor discrete.
+		</p>
+
+		<br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/input_output2.png" width = "500" height = "250" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">State of the art</h2>
+
+        <p>
+          We found while searching in the beginning that the state of the art results were provided by the literature paper we chose, titled "Emotion Detection in Text: Focusing on Latent Representation". The image below displays how this literature results were better than the previous state of model.		</p>
+
+		<br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/state_of_the_art.png" width = "500" height = "250" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Orignial Model from Literature</h2>
+
+        <p>
+          In the original model, they used recurrent neural network based classifiers to create more informative latent representation of the target text as a whole and create a model that can capture the context and sequential nature of the text to improve the performance in emotion detection of text. As a result they focused on methodologies to increase the quality of these latent representations both contextually and emotionally. As seen in the image below, the models passes the tweets to an embedding vector, we used fasttext. Then, the vectors produced are passed to a singe bidirectional RNN layer (GRU). The output of the GRU is then passed to a layer of maxpool and averagepool concatenated together. Next, the output is passed to a feed-forward network that consists of a dense layer and a dropout layer. Finally, the output is passed to a sigmoid layer to produce the probability that the tweets is of each emotion.
+
+		</p>
+
+		<br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/model.png" width = "1000" height = "500" class="img-fluid text-center"> 
+
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Proposed Updates</h2>
+
+		<h5 class="mt-5">Update #1: Used CRNNs and added multiple layers</h5>
+		<p>
+			We increased the number of Bidirectional RNNs to 3 layers and added a CNN layer in beginning, forming CRNNs. The CNN layer acts as a feature extractor to capture local patterns in data. For instance, specific word combinations are an important pattern. Then, the extracted features are feeded to the RNN layers
+		</p>
+		<br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/Update1.png" width = "1000" height = "500" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+
+		<h5 class="mt-5">Update #2: Integrated emojis to our model</h5>
+		<p>
+			Our model in this update is able to convert emojis to text and train on them to extract the intended emotion form both the text and emoji.
+		</p>
+		<br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/Update2.png" width = "1000" height = "500" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Results</h2>
+
+        <p>
+			Because we had a smaller dataset than the original model, we couldn't use their weights. As a result, we ran the original model for each emotion on our dataset and the results are shown in the icture below. Then, we ran our maultilayer model without integrating the emojis. The results dropped making the accuracy to 87.5% on average. Afterwards, we integrated the emojis and the results increased to 90.2% on average. Consequently, we can say that our multilayer model is worse than the original model, but our emoji model is as accurate as the original model.
+		</p>
+
+		<br/> <!-- Empty Line before the image -->
+	    <div class="img-container" align="center"> <!-- Block parent element -->
+      		<img src="resources/images/Results.png" class="img-fluid text-center">
+    	</div>
+    	<br/> <!-- Empty Line after the image -->
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12 text-left">
+        <h2 class="mt-5">Technical report</h2>
+	 	<ul>
+		  <li><b>Programming Framework: </b>We used TenserFlow as our programming framework</li>
+		  <li><b>Training Hardware: </b>All training was done on google colab</li>
+		  <li><b>Training Time: </b>A model would take around of 7 minutes to train. Therefore, while experimenting with hyperparameters, the total time of training was around 500 minutes. </li>
+		  <li><b>Number of Epochs: </b>After some experimenting we found the optimal number of epochs to be 20 </li>
+		  <li><b>Time per Epoch: </b>Each Epoch takes from 21 seconds to 35 seconds to finish training</li>
+		  <li><b>Difficulties: </b> We faced many difficulties<ol>
+        <li>The embedding files were not provided so we had to get them</li>
+        <li>We had to retrieve the dataset as it was not given</li>
+        <li>It took us some time to debug the model and match it to our retreived dataset, since the provided format was incorrect.</li>
+        <li>We had to alter our approach to convert the emojis to text and not unicode because of this problem. </li>
+      </ol>  </li>
+		</ul> 
+      </div>
+    </div>
+
+	<div class="row">
+	  <div class="col-lg-12 text-left">
+	    <h2 class="mt-5">Conclusion</h2>
+
+	    <p>
+			We can conclude that our multilayer model is worse than our baseline because of the drop in the average accuracy. This drop was unexpected because we thought that adding multiple GRU layers would enable the model to capture emotions at a higher accuracy. However, this drop is explainable because we used a small dataset consisting of 10k tweets while training it. Consequently, the model overfitted and the test data was not big enough to show the overfitting. This overfitting was discovered when we ran the model on the 100k dataset and the accuracy dropped to 87.5%. Then, we integrated the emojis and the accuracy increased to 90.2%. This is very good as it shows that our model is as accurate as the baseline model, while integrating a new feature. The 1% difference in accuracy can be neglected because the same models has a margin of accuracy change when run at different times.   
+		</p>
+
+	  </div>
+	</div>
+
+	<div class="row">
+	  <div class="col-lg-12 text-left">
+	    <h2 class="mt-5">References</h2>
+
+	    <p>
+	    	List all references here, the following are only examples
+	    </p>
+
+		<ol>
+		  <li><a href="https://paperswithcode.com/paper/emotion-detection-in-text-focusing-on-latent">Our baseline paper</a></li>
+		  <li><a href="https://github.com/armintabari/Emotion-Detection-RNN">Github Repo for our baseline</a></li>
+		  <li><a href="https://github.com/emorynlp/character-mining">Github Repo for the model we used to understand how to implement CRNNs</a></li>
+      <li><a href="https://github.com/SEntiMoji/SEntiMoji">SentiMoji, a model we read through to understand how to handle emojis</a></li>
+      <li><a href="https://github.com/bfelbo/DeepMoji">DeepMoji, a model we read through to understand how to handle emojis</a></li>
+		</ol> 
+	  </div>
+	</div>
+
+  </div>
+
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../vendor/jquery/jquery.slim.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
